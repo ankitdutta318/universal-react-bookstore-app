@@ -17,11 +17,6 @@ import {postBooks, deleteBooks, updateBooks} from './actions/booksActions'
 const middleware = applyMiddleware(logger);
 const store = createStore(reducers, middleware);
 
-// store.subscribe(() => {
-//     console.log('Current state is: ', store.getState());
-//     // console.log(`id: ${store.getState()[1].id}`);        
-// });
-
 import BooksList from './components/pages/booksList';
 render(
     <Provider store={store}>
@@ -45,18 +40,18 @@ store.dispatch(postBooks(
     }]
 ));
 
-// DELETE a book
-store.dispatch(deleteBooks(
-    {id: 1}
-));
+// // DELETE a book
+// store.dispatch(deleteBooks(
+//     {id: 1}
+// ));
 
-// UPDATE a book
-store.dispatch(updateBooks(
-    {
-        id: 2,
-        title: 'Learn React in 24 hours'
-    }
-));
+// // UPDATE a book
+// store.dispatch(updateBooks(
+//     {
+//         id: 2,
+//         title: 'Learn React in 24 hours'
+//     }
+// ));
 
-// --> CART ACTION <--
-store.dispatch(addToCart([{id: 1}]));
+// // --> CART ACTION <--
+// store.dispatch(addToCart([{id: 1}]));
