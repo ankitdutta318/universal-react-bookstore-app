@@ -25,20 +25,9 @@ render(
 );
 
 // POST a book
-store.dispatch(postBooks(
-    [{
-        id: 1,
-        title: 'This is a book title',
-        description: 'This is the book description',
-        price: 499.99
-    }, 
-    {
-        id: 2,
-        title: 'This is a second book title',
-        description: 'This is the second book description',
-        price: 325.25
-    }]
-));
+// store.dispatch(postBooks(
+    
+// ));
 
 // // DELETE a book
 // store.dispatch(deleteBooks(
