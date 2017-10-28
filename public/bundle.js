@@ -9561,10 +9561,10 @@ function postBooks(book) {
 };
 
 // DELETE A BOOK
-function deleteBooks(id) {
+function deleteBooks(title) {
     return {
         type: "DELETE_BOOK",
-        payload: id
+        payload: title
     };
 };
 
@@ -32382,7 +32382,7 @@ function booksReducers() {
       var currentBookToDelete = [].concat(_toConsumableArray(state.books));
       // Determine at which index in books array is the book to be deleted
       var indexToDelete = currentBookToDelete.findIndex(function (book) {
-        return book._id == action.payload._id;
+        return book.title === action.payload;
       });
       //use slice to remove the book at the specified index
       return { books: [].concat(_toConsumableArray(currentBookToDelete.slice(0, indexToDelete)), _toConsumableArray(currentBookToDelete.slice(indexToDelete + 1))) };
@@ -44047,8 +44047,25 @@ var BooksFrom = function (_React$Component) {
             this.props.postBooks(book);
         }
     }, {
+        key: 'onDelete',
+        value: function onDelete() {
+            var bookTitle = (0, _reactDom.findDOMNode)(this.refs.delete).value;
+
+            this.props.deleteBooks(bookTitle);
+        }
+    }, {
         key: 'render',
         value: function render() {
+
+            var booksList = this.props.books.map(function (booksArr) {
+                return _react2.default.createElement(
+                    'option',
+                    { key: booksArr.title },
+                    ' ',
+                    booksArr.title
+                );
+            });
+
             return _react2.default.createElement(
                 _reactBootstrap.Well,
                 null,
@@ -44099,6 +44116,35 @@ var BooksFrom = function (_React$Component) {
                         { onClick: this.handleSubmit.bind(this), bsStyle: 'primary' },
                         'Save Book'
                     )
+                ),
+                _react2.default.createElement(
+                    _reactBootstrap.Panel,
+                    { style: { marginTop: '25px' } },
+                    _react2.default.createElement(
+                        _reactBootstrap.FormGroup,
+                        { controlId: 'formControlsSelect' },
+                        _react2.default.createElement(
+                            _reactBootstrap.ControlLabel,
+                            null,
+                            'Select a book title to delete'
+                        ),
+                        _react2.default.createElement(
+                            _reactBootstrap.FormControl,
+                            { ref: 'delete', componentClass: 'select', placeholder: 'select' },
+                            _react2.default.createElement(
+                                'option',
+                                { value: 'select' },
+                                'select'
+                            ),
+                            '// List of options will be created dynamically',
+                            booksList
+                        )
+                    ),
+                    _react2.default.createElement(
+                        _reactBootstrap.Button,
+                        { onClick: this.onDelete.bind(this), bsStyle: 'danger' },
+                        'Delete Books'
+                    )
                 )
             );
         }
@@ -44107,11 +44153,20 @@ var BooksFrom = function (_React$Component) {
     return BooksFrom;
 }(_react2.default.Component);
 
-function mapDispatchToProps(dispatch) {
-    return (0, _redux.bindActionCreators)({ postBooks: _booksActions.postBooks }, dispatch);
+function mapStateToProps(state) {
+    return {
+        books: state.books.books
+    };
 }
 
-exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(BooksFrom);
+function mapDispatchToProps(dispatch) {
+    return (0, _redux.bindActionCreators)({
+        postBooks: _booksActions.postBooks,
+        deleteBooks: _booksActions.deleteBooks
+    }, dispatch);
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(BooksFrom);
 
 /***/ }),
 /* 491 */
