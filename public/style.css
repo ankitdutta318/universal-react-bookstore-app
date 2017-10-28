@@ -7,12 +7,10 @@ body {
     width: auto;
     max-width: 900px;
     padding: 0 15px;
-    background-color: rgba(27, 26, 29, 0.733);
 }
 
 .container .footer-text {
     margin: 20px 0;
-    color: #fafafa;
 }
 
 .badge {
