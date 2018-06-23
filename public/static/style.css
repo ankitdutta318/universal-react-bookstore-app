@@ -1,0 +1,33 @@
+body {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.container {
+    width: auto;
+    max-width: 1000px;
+    padding: 0 15px;
+}
+
+.container .footer {
+    margin: 20px 0;
+}
+
+.badge { 
+    background-color: #e4aa48;
+}
+
+.footer {
+    font-weight: bold;
+    margin-top: 130px;
+}
+
+button.read-more-btn {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 3;
+    outline: none;
+    outline-offset: 0;
+    color: seagreen;
+}
